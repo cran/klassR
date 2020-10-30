@@ -4,8 +4,12 @@
 \alias{ConvertTable}
 \title{Code level convert table (internal function)}
 \usage{
-ConvertTable(klass_data, code = "code", parentcode = "parentCode",
-  level = "level")
+ConvertTable(
+  klass_data,
+  code = "code",
+  parentcode = "parentCode",
+  level = "level"
+)
 }
 \arguments{
 \item{klass_data}{Klass data frame to convert}
@@ -17,7 +21,7 @@ ConvertTable(klass_data, code = "code", parentcode = "parentCode",
 \item{level}{Name of variable containing level (Default = "level")}
 }
 \value{
-A dataata frame
+A dataframe
 }
 \description{
 Code level convert table (internal function)

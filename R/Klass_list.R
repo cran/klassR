@@ -60,10 +60,7 @@ ListKlass <- function(codelists = FALSE){
 #' @export
 #'
 #' @examples
-#' ListFamily()
-#' ListFamily(codelists=TRUE)
 #' ListFamily(family = 1)
-#' ListFamily(family = 1, codelists = TRUE)
 ListFamily <- function(family=NULL, codelists = FALSE){
   code <- ifelse(codelists, "?includeCodelists=true", "")
   if (is.null(family)){
@@ -97,9 +94,6 @@ ListFamily <- function(family=NULL, codelists = FALSE){
 #'
 #' @examples
 #' SearchKlass("yrke")
-#' SearchKlass("yrke", codelists = TRUE)
-#' SearchKlass("yrke", codelists = TRUE, size = 2)
-#' SearchKlass("*fold")
 SearchKlass <- function(query, codelists = FALSE, size = 20){
   query <- as.character(query)
   code <- ifelse(codelists, "&includeCodelists=true", "")
@@ -124,11 +118,6 @@ SearchKlass <- function(query, codelists = FALSE, size = 20){
 #'
 #' @examples
 #' GetVersion(7)
-#' GetVersion(7, "2010-01-01")
-#' \donttest{
-#' GetVersion(family = 1)
-#' GetVersion(family = 1, klassNr = TRUE)[1:10,]
-#' }
 GetVersion <- function(klass=NULL,  date=NULL, family = NULL, klassNr=FALSE){
   if(is.null(date)) date <- Sys.Date()
   if(is.null(family)){
@@ -151,6 +140,7 @@ GetVersion <- function(klass=NULL,  date=NULL, family = NULL, klassNr=FALSE){
     for (i in fam$klass_nr){
       url <- paste("http://data.ssb.no/api/klass/v1/classifications/", i, sep="")
       df <- as.data.frame(GetUrl(url)$versions)
+      if (length(df) == 0) next() # Check if there is a valid version number
       if(is.null(df$validTo)) df$validTo <- as.character(Sys.Date() + 1)
       df$validTo[is.na(df$validTo)] <- as.character(Sys.Date() + 1)
       for (j in 1:nrow(df)){
@@ -223,7 +213,6 @@ GetFamily <- function(klass){
 #' @examples
 #' \donttest{
 #' CorrespondList("7")
-#' CorrespondList("131", date = "2016-01-01") 
 #' }
 
 CorrespondList <- function(klass, date = NULL){
@@ -269,7 +258,8 @@ CorrespondList <- function(klass, date = NULL){
   row.names(dt2) <- NULL
   dt2$target_klass[dt2$source_klass == dt2$target_klass] <- NA #dropping target for tables within version
 
-  if (any(is.na(dt2$target_klass))) warning("\n\n There are correspondence tables within classification ",klass," (between different time points). Use the changes = TRUE option in the ApplyKlass and GetKlass functions to get these\n ")
+  if (any(is.na(dt2$target_klass))) message("\n\n There are correspondence tables within classification ", 
+                                            klass,
+                                            " (between different time points). Use the changes = TRUE option in the ApplyKlass and GetKlass functions to get these\n ")
   return(dt2)
 }
-

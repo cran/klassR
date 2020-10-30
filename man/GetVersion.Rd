@@ -4,8 +4,7 @@
 \alias{GetVersion}
 \title{Get version number of a class given a date}
 \usage{
-GetVersion(klass = NULL, date = NULL, family = NULL,
-  klassNr = FALSE)
+GetVersion(klass = NULL, date = NULL, family = NULL, klassNr = FALSE)
 }
 \arguments{
 \item{klass}{Classification number}
@@ -24,9 +23,4 @@ Get version number of a class given a date
 }
 \examples{
 GetVersion(7)
-GetVersion(7, "2010-01-01")
-\donttest{
-GetVersion(family = 1)
-GetVersion(family = 1, klassNr = TRUE)[1:10,]
-}
 }
