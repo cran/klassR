@@ -27,7 +27,9 @@ splitChar <- function(x, dot){
 #'}
 #' @export
 formattering <- function(x, input_level, klass, klass_data){
-
+  if(any(grepl("^[A-Za-z]+$", x))){
+    return(x)
+  }
   code <- klass_data[klass_data$level==input_level,]$code
   # hente funksjonen til å lese inn: Fetch_data
   dot <- unlist(lapply(strsplit(code[1], ''), function(x) which(x == '.')))
