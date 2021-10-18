@@ -1,7 +1,7 @@
 Package: klassR
 Type: Package
 Title: Classifications and Codelists for Statistics Norway
-Version: 0.1.5
+Version: 0.1.7
 Author: Susie Jentoft, Lisa Li, Diana-Cristina Iancu
 Maintainer: Susie Jentoft <susie.jentoft@ssb.no>
 Description: Functions to search, retrieve and apply classifications 
@@ -17,6 +17,6 @@ RoxygenNote: 7.1.1
 Suggests: testthat (>= 3.0.0)
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2021-03-30 06:50:58 UTC; coo
+Packaged: 2021-10-17 09:14:33 UTC; coo
 Repository: CRAN
-Date/Publication: 2021-03-30 09:50:14 UTC
+Date/Publication: 2021-10-18 09:10:02 UTC
