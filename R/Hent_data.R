@@ -58,7 +58,7 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
   }
   
   # Paste together to an URL
-  url <- paste("http://data.ssb.no/api/klass/v1/classifications/",
+  url <- paste(GetBaseUrl(), "classifications/",
                klass,
                coding,
                output_level_coding,
@@ -100,17 +100,29 @@ stop_quietly <- function() {
 #' Internal function for fetching the variant name based on the number
 #' @param variant The variant number
 get_variant_name <- function(variant){
-  url <- paste0("http://data.ssb.no/api/klass/v1/variants/", variant)
-  #variant_url <- httr::GET(url)
+  # Check variant url and that it exists
+  url <- paste0(GetBaseUrl(), "variants/", variant)
   variant_url <- check_connect(url)
   if (is.null(variant_url)) stop_quietly()
+  
+  # Extract text with variant name
   variant_text <- httr::content(variant_url, "text")
   if (grepl("variant not found", variant_text)){
     stop("The variant ", variant, " was not found.")
   }
   variant_name_full <- jsonlite::fromJSON(variant_text, flatten = TRUE)$name
-  name_sm <- strsplit(variant_name_full, split = "(?<=[a-zA-Z])\\s*(?=[0-9])", perl = T)[[1]][1]
-  gsub(" ", "%20", name_sm)
+  # Earlier have just taken first word before numbers but this is not working so use whole name
+  # name_sm <- strsplit(variant_name_full, split = "(?<=[a-zA-Z])\\s*(?=[0-9])", perl = T)[[1]][1]
+  
+  # Substitute for spaces, and norwegian characters
+  variant_name_full <- gsub(" ", "%20", variant_name_full)
+  variant_name_full <- gsub("\u00E6", "%C3%A6", variant_name_full)
+  variant_name_full <- gsub("\u00F8", "%C3%B8", variant_name_full)
+  variant_name_full <- gsub("\u00E5", "%C3%A5", variant_name_full)
+  variant_name_full <- gsub("\\(", "%28", variant_name_full)
+  variant_name_full <- gsub("\\)", "%29", variant_name_full)
+  
+  variant_name_full
 }
 
 
@@ -144,8 +156,8 @@ GetUrl2 <- function(url, check = TRUE){
 #' @param correspond Number/string of the target correspondence (if a correspondence table is requested).
 #' @param variant The classification variant to fetch (if a variant is wanted).
 #' @param output_level Number/string specifying the requested hierarchy level (optional).
-#' @param language Two letter string for the requested language output. Default is bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)
-#' @param output_style String varibale for the output type. Default is "normal". Specify "wide" for a wide formatted table output.
+#' @param language Two letter string for the requested language output. Default is Bokmål ("nb"). Nynorsk ("nn") and English ("en") also available for some classification.)
+#' @param output_style String variable for the output type. Default is "normal". Specify "wide" for a wide formatted table output.
 #'
 #' @return The function returns a data frame of the specified classification/correspondence table. Output variables include:
 #' code, parentCode, level, and name for standard lists. For correspondence tables variables include:
@@ -179,15 +191,14 @@ GetKlass <- function(klass,
   
   # Create variables fratil (whether to and from dates should be used) and ver
   if (length(date) == 1 & !is.numeric(date)){
-    fratil <- FALSE# om det er dato fra og til
-    ver <- FALSE# om det skal finne en versjon (not implemented yet)
+    fratil <- FALSE # om det er dato fra og til
+    ver <- FALSE # om det skal finne en versjon (not implemented yet)
     CheckDate(date)
   }
 
   if (length(date) == 1 & is.numeric(date)){
     fratil <- FALSE
     ver <- TRUE
-    # legg inn her hvordan å finne versjon
   }
 
   # if two dates are provided, check both and check order. Swap if neccessary
@@ -202,7 +213,7 @@ GetKlass <- function(klass,
     } else {
       dateswap <- FALSE
     }
-    date[2] <- as.character(as.Date(date[2], format= "%Y-%m-%d") + 1) # endre dette til å inkludere end dato punkt
+    date[2] <- as.character(as.Date(date[2], format= "%Y-%m-%d") + 1)
   }
   if (length(date) > 2) stop("You have provided too many dates.")
 
