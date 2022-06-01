@@ -1,10 +1,11 @@
 
 #' Internal function to check date
 #' @param date Date
+#' @keywords internal
 #' @return NULL
 CheckDate <- function(date){
   dcheck <- try(as.Date(date, format= "%Y-%m-%d"))
-  if(class(date) == "try-error" | is.na(dcheck)) {
+  if(!inherits(dcheck, 'Date') | is.na(dcheck)) {
     stop("An incorrect date format was given. Please use format 'YYYY-mm-dd'.")
   }
 }
@@ -19,6 +20,7 @@ CheckDate <- function(date){
 #' @param date Date(s) for classification
 #' @param output_level_coding Coding for output level
 #' @param language_coding Coding for language
+#' @keywords internal
 #'
 #' @return String url adress
 
@@ -70,6 +72,7 @@ MakeUrl <- function(klass, correspond = NULL, variant_name = NULL,
 #' Check connection
 #' Function to check that a connection to data.ssb.no is able to be established
 #' @param url String url address for connection to check
+#' @keywords internal
 #' @return Nothing is returned but a error or warning message is return if no connection is available
 check_connect <- function(url){
   tryget <- tryCatch(
@@ -77,7 +80,7 @@ check_connect <- function(url){
     error = function(e) conditionMessage(e),
     warning = function(w) conditionMessage(w)
   )
-  if (class(tryget) != "response"){
+  if (!inherits(tryget, "response")){
     message(tryget)
     return(invisible(NULL))
   } else if (httr::http_error(tryget$status_code)){
@@ -89,6 +92,7 @@ check_connect <- function(url){
 
 #' Stop quietly function
 #' Stop from a function without an error. Used for stopping when no internet
+#' @keywords internal
 stop_quietly <- function() {
   opt <- options(show.error.messages = FALSE)
   on.exit(options(opt))
@@ -99,6 +103,7 @@ stop_quietly <- function() {
 #' Get variant name
 #' Internal function for fetching the variant name based on the number
 #' @param variant The variant number
+#' @keywords internal
 get_variant_name <- function(variant){
   # Check variant url and that it exists
   url <- paste0(GetBaseUrl(), "variants/", variant)
@@ -106,7 +111,7 @@ get_variant_name <- function(variant){
   if (is.null(variant_url)) stop_quietly()
   
   # Extract text with variant name
-  variant_text <- httr::content(variant_url, "text")
+  variant_text <- httr::content(variant_url, "text", encoding = "UTF-8") ####
   if (grepl("variant not found", variant_text)){
     stop("The variant ", variant, " was not found.")
   }
@@ -131,7 +136,7 @@ get_variant_name <- function(variant){
 #'
 #' @param url String url address
 #' @param check Logical parameter on whether to check if the url exists
-#'
+#' @keywords internal
 #' @return text in json format
 GetUrl2 <- function(url, check = TRUE){
   # henter innholdet fra klass med acceptheader json
@@ -143,7 +148,7 @@ GetUrl2 <- function(url, check = TRUE){
   if (is.null(hent_klass)){
     return(invisible(NULL))
   } 
-  klass_text <- httr::content(hent_klass, "text") ## deserialisering med httr funksjonen content
+  klass_text <- httr::content(hent_klass, "text", encoding = "UTF-8") #### ## deserialisering med httr funksjonen content
   return(klass_text)
 }
 
