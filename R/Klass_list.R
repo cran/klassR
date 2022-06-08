@@ -21,10 +21,14 @@ GetNums <- function(x){
 #' @keywords internal
 #' @return text in json format
 GetUrl <- function(url){
-  hent_klass <- httr::GET(url) ## henter innholdet fra klass med acceptheader json
-  klass_text <- httr::content(hent_klass, "text") ## deserialisering med httr funksjonen content
-  klass_data <- jsonlite::fromJSON(klass_text)
-  return(klass_data)
+  hent_klass <- check_connect(url)
+  if (is.null(hent_klass)){
+    return(invisible(NULL))
+  } else {
+    klass_text <- httr::content(hent_klass, "text", encoding = "UTF-8") ## deserialisering med httr funksjonen content
+    klass_data <- jsonlite::fromJSON(klass_text)
+    return(klass_data)
+  }
 }
 
 
@@ -227,7 +231,7 @@ GetFamily <- function(klass){
 #' @param klass Classification number
 #' @param date Date for classification (format = "YYYY-mm-dd"). Default is current date
 #'
-#' @return Data frame with list of corrsepondence tables, source ID and target ID.
+#' @return Data frame with list of correspondence tables, source ID and target ID.
 #' @export
 #'
 #' @examples

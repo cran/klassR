@@ -13,7 +13,7 @@ CorrespondList(klass, date = NULL)
 \item{date}{Date for classification (format = "YYYY-mm-dd"). Default is current date}
 }
 \value{
-Data frame with list of corrsepondence tables, source ID and target ID.
+Data frame with list of correspondence tables, source ID and target ID.
 }
 \description{
 Correspondence list
