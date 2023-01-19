@@ -32,7 +32,6 @@ GetUrl <- function(url){
 }
 
 
-
 #' Classification list
 #' Get a full list of all classifications and codelists
 #'
@@ -231,7 +230,7 @@ GetFamily <- function(klass){
 #' @param klass Classification number
 #' @param date Date for classification (format = "YYYY-mm-dd"). Default is current date
 #'
-#' @return Data frame with list of correspondence tables, source ID and target ID.
+#' @return Data frame with list of corrsepondence tables, source ID and target ID.
 #' @export
 #'
 #' @examples

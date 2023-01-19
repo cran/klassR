@@ -1,9 +1,10 @@
-6ea785251aeefe5896534e71b05500d0 *DESCRIPTION
+d727df9e11ef1a6b0d76c43f428f914a *DESCRIPTION
 46d86a65e7843c6a5edd3656c298b33e *NAMESPACE
+24ac5ab27bb26d40638fbcbddb3b8868 *NEWS.md
 59825807b756202bba8bf2dc2f2760da *R/Convert_table.R
-418649210a7ac825d74900ae4914f2b7 *R/Hent_data.R
+7f15dd433d5496cf5bbd08f8c33f0c30 *R/Hent_data.R
 69a1e5afbb447ba3a6e96045cd526e9e *R/KLASS.R
-37fa6a86aeacd261184487b5aff80fa7 *R/Klass_list.R
+0c70e27ddd7203e4f86be5cca415e644 *R/Klass_list.R
 e415227a5b841afb7febb0a1a1fa0267 *R/Levels.R
 135611302c3039285cfb3081de9242fd *R/checkLevel.R
 1681bf8233a70a7e3a1452206948f923 *R/data.R
@@ -12,10 +13,10 @@ b687f5cab797d33746ea82af359f6314 *R/format.R
 222799837988a1fe70cf18835f8be558 *man/ApplyKlass.Rd
 24374bbb31ddc6bbfde0289cb4272bca *man/CheckDate.Rd
 2951e1036774edd3717e1899008a9881 *man/ConvertTable.Rd
-ec22ddff6ed2c864a731f464c25816e5 *man/CorrespondList.Rd
+c0fb90fe64d1f521dd906e3a721e2a18 *man/CorrespondList.Rd
 6b523ec2dd94b058f39f6099ed457415 *man/GetBaseUrl.Rd
 0eb88a49096357ffce008766d441204f *man/GetFamily.Rd
-873d654bd7b53876c997d9492c4c987f *man/GetKlass.Rd
+1b6de4bad1a49ad569f0db0f43484c2e *man/GetKlass.Rd
 2ef96df693fc625075a3634ec0b62f81 *man/GetName.Rd
 3468f9e176f69063282ce69382fb219a *man/GetNums.Rd
 4fc145c176f216ab80e0c1ca687a60c7 *man/GetUrl.Rd
@@ -36,4 +37,4 @@ ca460966015c27ede7b93e2fadbd18bf *man/splitChar.Rd
 307ac1c8021be1157fc5f665e835631c *man/stop_quietly.Rd
 53f961c530fdbde59d498deebf4c6e03 *tests/testthat.R
 fa2ee583bec39be6fbb7735b2ed25128 *tests/testthat/test_ApplyKlass.R
-b2d0fb8761d8187d694eee9d1beb31ee *tests/testthat/test_GetKlass.R
+e078beadfd56d6b12d5f5bb6d574b4ca *tests/testthat/test_GetKlass.R
