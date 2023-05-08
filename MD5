@@ -1,8 +1,8 @@
-d727df9e11ef1a6b0d76c43f428f914a *DESCRIPTION
+582d3ca6e5d03dfb4ba8d58be705dded *DESCRIPTION
 46d86a65e7843c6a5edd3656c298b33e *NAMESPACE
-24ac5ab27bb26d40638fbcbddb3b8868 *NEWS.md
+eb0077a16e76db342f12f24310469c7a *NEWS.md
 59825807b756202bba8bf2dc2f2760da *R/Convert_table.R
-7f15dd433d5496cf5bbd08f8c33f0c30 *R/Hent_data.R
+40daec49635026f33a502fd3413bb1e4 *R/Hent_data.R
 69a1e5afbb447ba3a6e96045cd526e9e *R/KLASS.R
 0c70e27ddd7203e4f86be5cca415e644 *R/Klass_list.R
 e415227a5b841afb7febb0a1a1fa0267 *R/Levels.R
@@ -16,7 +16,7 @@ b687f5cab797d33746ea82af359f6314 *R/format.R
 c0fb90fe64d1f521dd906e3a721e2a18 *man/CorrespondList.Rd
 6b523ec2dd94b058f39f6099ed457415 *man/GetBaseUrl.Rd
 0eb88a49096357ffce008766d441204f *man/GetFamily.Rd
-1b6de4bad1a49ad569f0db0f43484c2e *man/GetKlass.Rd
+d3b1cc264eb7084e763bbbe5b4ad5f0d *man/GetKlass.Rd
 2ef96df693fc625075a3634ec0b62f81 *man/GetName.Rd
 3468f9e176f69063282ce69382fb219a *man/GetNums.Rd
 4fc145c176f216ab80e0c1ca687a60c7 *man/GetUrl.Rd
@@ -26,7 +26,7 @@ c0fb90fe64d1f521dd906e3a721e2a18 *man/CorrespondList.Rd
 a670b4a7ab212236d6b00848b3135710 *man/ListFamily.Rd
 a94f1885f4b1a7f46fbcf491203df28d *man/ListKlass.Rd
 7646b06e5b2edf66f3dd8ac19d50f471 *man/MakeChar.Rd
-6fd618a36f6e59b7ba4efc250179c915 *man/MakeUrl.Rd
+1ff9aaa29c13fd6f7de065befa7b3d3c *man/MakeUrl.Rd
 21a2a2fffe0b15d30ead1781758c7cc2 *man/SearchKlass.Rd
 fe6ed9e1f373a3316a6922df933d3bca *man/check_connect.Rd
 a46094f44fb0654ab324aadcf063b902 *man/formattering.Rd
@@ -36,5 +36,5 @@ c08b30ce2e9899fd53429244df7f903c *man/get_variant_name.Rd
 ca460966015c27ede7b93e2fadbd18bf *man/splitChar.Rd
 307ac1c8021be1157fc5f665e835631c *man/stop_quietly.Rd
 53f961c530fdbde59d498deebf4c6e03 *tests/testthat.R
-fa2ee583bec39be6fbb7735b2ed25128 *tests/testthat/test_ApplyKlass.R
-e078beadfd56d6b12d5f5bb6d574b4ca *tests/testthat/test_GetKlass.R
+6004398905bc786a7895645a7b062e8f *tests/testthat/test_ApplyKlass.R
+06cfd2e0b748326d46bb166d799b5993 *tests/testthat/test_GetKlass.R
