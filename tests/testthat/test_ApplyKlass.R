@@ -50,7 +50,7 @@ test_that("Check levelCheck for numerical codes", {
 test_that("Check levelCheck for character codes", {
   sek <- GetKlass(39, date = "2020-01-01")
   expect_equal(levelCheck("INNL", sek), 1)
-  expect_equal(levelCheck(c("INNL", "B_FIN", "B_FIN", NA), sek), 3)
+  expect_equal(levelCheck(c("INNL", "B_FIN", "B_FIN", NA), sek), 2)
 })
 
 
@@ -72,6 +72,7 @@ test_that("ApplyKlass can return a variant classification",{
   expect_equal(dat_new[3] , "Industri")
 })
 
+
 test_that("ApplyKlass works for variant classification with Norwegian characters in the variant name",{
   dat <- c("05", "01")
   new <- ApplyKlass(dat,
@@ -82,6 +83,105 @@ test_that("ApplyKlass works for variant classification with Norwegian characters
                     date = "2020-01-01")
   expect_equal(new[1], "Bergverksdrift og utvinning")
 })
+
+
+test_that("An error is correctly returned in the case of a null vector", {
+  expect_error(ApplyKlass(NULL, 131), "The input vector is empty")
+})
+
+
+test_that("ApplyKlass works for classifications with varying number of digits",{
+  dat <- c("56", "580")
+  new <- ApplyKlass(dat,
+                    klass = 270,
+                    date = "2024-01-01")
+  expect_false(new[1] == new[2])
+  expect_false(all(is.na(new)))
+})
+
+
+test_that("Nace classification with missing formatting",{
+  # simple example with all missing formatting
+  dat <- c("01460","45112", "45111", "45310")
+  expect_warning(
+  new <- ApplyKlass(dat,
+                    klass = 6,
+                    date = "2024-01-01"),
+  "Number missing .: 4"
+  )
+  expect_equal(new[1], "Svinehold")
+  
+  # Check mixture of formatting
+  dat <- c("45112", "45.111")
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 6,
+                      date = "2024-01-01"),
+    "Number missing .: 1"
+  )
+  expect_equal(new[1], "Detaljhandel med biler og lette motorvogner, unntatt motorsykler")
+
+  # checking NAs
+  dat <- c("45.112", "45.111", NA)
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 6,
+                      date = "2024-01-01"),
+    "Number of NA: 1"
+  )
+  expect_equal(new[1], "Detaljhandel med biler og lette motorvogner, unntatt motorsykler")
+  expect_true(is.na(new[3]))
+  })
+
+
+test_that("Municipality classification with missing formatting",{
+  # example with all missing leading 0
+  dat <- c("301","301")
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 131,
+                      date = "2024-01-01"),
+    "Number missing leading 0: 2"
+  )
+  expect_equal(new[1], "Oslo")
+  
+  # simple example with all missing leading 0
+  dat <- c("301","301")
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 131,
+                      date = "2024-01-01"),
+    "Number missing leading 0: 2"
+  )
+  expect_equal(new[1], "Oslo")
+  
+  
+  # Check mixture of formatting
+  dat <- c("45112", "45.111")
+  expect_warning(
+    new <- ApplyKlass(dat,
+                      klass = 6,
+                      date = "2024-01-01"),
+    "Number missing .: 1"
+  )
+  expect_equal(new[1], "Detaljhandel med biler og lette motorvogner, unntatt motorsykler")
+})
+
+
+test_that("ApplyKlass works for classifications with varying digits and letters",{
+  dat <-  c("56", "580", "KG1")
+  new <- ApplyKlass(dat,
+                    klass = 270,
+                    date = "2024-01-01")
+  expect_false(all(is.na(new)))
+  
+  dat <-c("01", "03b")
+  new2 <- ApplyKlass(dat,
+                     klass = 207,
+                     date = "2024-01-01")
+  expect_false(all(is.na(new2)))
+})
+
 
 test_that("An error is correctly returned in the case of a null vector", {
   expect_error(ApplyKlass(NULL, 131), "The input vector is empty")

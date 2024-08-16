@@ -19,7 +19,7 @@ MakeChar <- function(x){
 #'
 #' @param x Input vector
 #' @param klass Classification number
-#' @param date Date for classification (format = "YYYY-mm-dd"). Default is current date
+#' @param date String for the required date of the classification. Format must be "yyyy-mm-dd". For an inverval, provide two dates as a vector. If blank, will default to today's date.
 #' @param variant The classification variant to fetch (if a variant is wanted).
 #' @param correspond ID number for target in correspondence table. For correspondence between two dates within the same classification, use correspond = TRUE.
 #' @param language Default "nb" for Norwegian (Bokmål). Also "nn" (Nynorsk) and "en" (English available for some classifications)
@@ -75,17 +75,16 @@ ApplyKlass <- function(x,
                           language = language, output_level = NULL)
   }
 
-  # kjor indata sjekk
-  input_level <- levelCheck(x = x, klass_data = klass_data)
-  if (is.null(output_level)) output_level <- input_level
-
-
-  #formattering
-  if (format == TRUE){
-    x_formatted <- formattering(x, input_level = input_level, klass = klass, klass_data = klass_data) # fungere ikke for yrke
+  # Formattering - only for nace and municipality
+  if (format == TRUE & klass %in% c("6", "131")){
+    x_formatted <- formattering(x, klass = klass)
   } else {
     x_formatted <- x
   }
+  
+  # kjor indata sjekk
+  input_level <- levelCheck(x = x_formatted, klass_data = klass_data) # implies all are same level!
+  if (is.null(output_level)) output_level <- input_level
 
   if (!all(input_level == output_level) & type %in% c("kor", "change")) stop("Level changes and time changes/correspondence concurrently is not programmed.")
 
