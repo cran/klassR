@@ -1,7 +1,7 @@
 Package: klassR
 Type: Package
 Title: Classifications and Codelists for Statistics Norway
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: 
   c(person(given = "Susie",
            family = "Jentoft",
@@ -33,7 +33,7 @@ Suggests: rmarkdown, knitr, testthat (>= 3.0.0), kableExtra, magrittr,
         dplyr
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2024-12-03 12:39:49 UTC; coo
+Packaged: 2025-02-07 10:17:07 UTC; coo
 Author: Susie Jentoft [aut, cre],
   Diana-Cristina Iancu [aut],
   Lisa Li [aut],
@@ -41,4 +41,4 @@ Author: Susie Jentoft [aut, cre],
   Statistics Norway [cph]
 Maintainer: Susie Jentoft <susie.jentoft@ssb.no>
 Repository: CRAN
-Date/Publication: 2024-12-03 13:00:02 UTC
+Date/Publication: 2025-02-07 10:40:02 UTC

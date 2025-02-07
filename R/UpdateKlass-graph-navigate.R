@@ -139,7 +139,7 @@ is_combined <- function(graph, node, compare_node = NULL) {
   } else {
     paths <- igraph::all_simple_paths(graph, node, start_nodes, mode = "in")
 
-    return(!all(vapply(paths, \(path) compare_node %in% path, logical(1))))
+    return(!all(vapply(paths, function(path) compare_node %in% path, logical(1))))
   }
 }
 
@@ -185,7 +185,7 @@ update_klass_node <- function(graph, node) {
 
   visited <- unique(c(
     node,
-    bfs_result$order[!bfs_result$name %in% unique(end_nodes)$name],
+    bfs_result$order[!bfs_result$order$name %in% unique(end_nodes)$name],
     end_nodes
   ))
 
