@@ -1,10 +1,7 @@
-# klassR 1.0.1
+# klassR 1.0.3
 
-- Small bug fix
-
-# klassR 1.0.1
-
-- Small bug fix
+- Adjustments for upcoming changes to dependent package igraph.
+- Updates in documentation.
 
 # klassR 1.0.0
 

@@ -1,13 +1,13 @@
-24bcd3cadfc7f1cffda47c9985d12575 *DESCRIPTION
+087192590bb84d2c309dabbed6c65fb4 *DESCRIPTION
 b33736a8fcf0b947c018290228709c63 *LICENSE
 41db9c9fba371ec84d269abb08fd6377 *NAMESPACE
-e3cb70a88f8f3a0b2505c59915addff1 *NEWS.md
+23f404a83df8fb863102d57ee42fcf7f *NEWS.md
 e16784c36885c85d860f720fcbcebd1e *R/Convert_table.R
 86481a2fb3fa5dc092a95df687cbf095 *R/Hent_data.R
 5d70a8244f6c8a6b759b489359ad41be *R/KLASS.R
 75cfbc9b770c349e84ba7041cb3bdfff *R/Klass_list.R
 252fafebecdb3b004d4cd3377c04bd90 *R/Levels.R
-f2987a0fb7de2f797641b0c142d23242 *R/UpdateKlass-graph-build.R
+def3601ca83836a5caba462a736807f3 *R/UpdateKlass-graph-build.R
 b31452ea86d0c198ffaeca6fcf78b0e3 *R/UpdateKlass-graph-navigate.R
 35bcea97d761d0cfbc66a2077845b22f *R/UpdateKlass.R
 c298513898bcc800b1c56f31ce25125b *R/checkLevel.R
