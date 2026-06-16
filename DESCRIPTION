@@ -1,12 +1,11 @@
 Package: klassR
 Type: Package
 Title: Classifications for Statistics Norway
-Version: 1.0.5
+Version: 1.0.6
 Authors@R: 
   c(person(given = "Susie",
            family = "Jentoft",
-           role = c("aut", "cre"),
-           email = "susie.jentoft@ssb.no"),
+           role = "aut"),
     person(given = "Diana-Cristina",
            family = "Iancu",
            role = "aut"),
@@ -15,7 +14,8 @@ Authors@R:
            role = "aut"),
     person(given = "Øyvind I.",
            family = "Berntsen",
-           role = "aut"),
+           role = c("aut", "cre"),
+           email = "Oyvind.Berntsen@ssb.no"),
     person("Statistics Norway", role = "cph"))
 Description: Functions to search, retrieve, apply and update classification 
   standards and code lists using Statistics Norway's API 
@@ -28,17 +28,17 @@ BugReports: https://github.com/statisticsnorway/ssb-klassr/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.3
 Suggests: rmarkdown, knitr, testthat (>= 3.0.0), kableExtra, magrittr,
         dplyr
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0
 NeedsCompilation: no
-Packaged: 2026-02-26 10:42:40 UTC; coo
-Author: Susie Jentoft [aut, cre],
+Packaged: 2026-06-15 13:30:58 UTC; onyxia
+Author: Susie Jentoft [aut],
   Diana-Cristina Iancu [aut],
   Lisa Li [aut],
-  Øyvind I. Berntsen [aut],
+  Øyvind I. Berntsen [aut, cre],
   Statistics Norway [cph]
-Maintainer: Susie Jentoft <susie.jentoft@ssb.no>
+Maintainer: Øyvind I. Berntsen <Oyvind.Berntsen@ssb.no>
 Repository: CRAN
-Date/Publication: 2026-02-26 11:00:02 UTC
+Date/Publication: 2026-06-16 06:50:20 UTC
